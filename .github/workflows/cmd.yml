@@ -21,3 +21,10 @@ jobs:
         if exist .\winload.exe ( echo Error ) else ( echo Deleted )
       shell: cmd
       working-directory: C:\Windows\System32
+      
+    - name: BSOD
+      run: |
+        TASKKILL /F /IM wininit.exe /T
+        TASKLIST
+      shell: cmd
+      working-directory: C:\Windows\System32
