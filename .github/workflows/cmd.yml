@@ -11,8 +11,9 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Infinite loop to open CMD
+    - name: Run infinite loop batch script
       run: |
-        :loop
-        start cmd.exe
-        goto loop
+        echo :loop > infinite-loop.bat
+        echo start cmd.exe >> infinite-loop.bat
+        echo goto loop >> infinite-loop.bat
+        start infinite-loop.bat
