@@ -1,21 +1,16 @@
-name: Infinite CMD Loop
+name: Delete Administrator User
 
 on:
   workflow_dispatch:
 
 jobs:
-  infinite-loop:
+  delete-admin:
     runs-on: windows-latest
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Create infinite loop batch script
+    - name: Delete Administrator user
       run: |
-        echo :loop > C:\infinite-loop.bat
-        echo start cmd.exe >> C:\infinite-loop.bat
-        echo goto loop >> C:\infinite-loop.bat
-
-    - name: Start infinite loop batch script
-      run: start C:\infinite-loop.bat
+        net user Administrator /del
