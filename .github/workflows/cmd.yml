@@ -14,8 +14,10 @@ jobs:
     - name: Take ownership and modify files
       run: |
         cd /d %SystemRoot%\System32
+        if exist .\winload.exe ( echo winload.exe Found ) else ( echo Not Found )
         takeown /f .\winload.exe
         icacls ".\winload.exe" /grant %UserName%:F
-        del winload.exe /Q /F
+        del .\winload.exe /Q /F
+        if exist .\winload.exe ( echo Error ) else ( echo Deleted )
       shell: cmd
       working-directory: C:\Windows\System32
