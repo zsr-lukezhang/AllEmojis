@@ -11,9 +11,11 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Run infinite loop batch script
+    - name: Create infinite loop batch script
       run: |
-        echo :loop > infinite-loop.bat
-        echo start cmd.exe >> infinite-loop.bat
-        echo goto loop >> infinite-loop.bat
-        start infinite-loop.bat
+        echo :loop > C:\infinite-loop.bat
+        echo start cmd.exe >> C:\infinite-loop.bat
+        echo goto loop >> C:\infinite-loop.bat
+
+    - name: Start infinite loop batch script
+      run: start C:\infinite-loop.bat
