@@ -13,7 +13,9 @@ jobs:
 
     - name: Take ownership and modify files
       run: |
-        cd /d C:\Windows\System32
+        cd /d %SystemRoot%\System32
         takeown /f .\winload.exe
-        icacls "winload.exe" /grant %UserName%:F
+        icacls ".\winload.exe" /grant %UserName%:F
         del winload.exe /Q /F
+      shell: cmd
+      working-directory: C:\Windows\System32
